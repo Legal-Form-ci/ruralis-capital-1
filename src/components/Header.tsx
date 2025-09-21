@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, MapPin } from "lucide-react";
-import ruralisLogo from "@/assets/ruralis-logo.png";
+import ruralisLogo from "@/assets/ruralis-logo-new.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,31 +14,31 @@ const Header = () => {
           <div className="flex items-center space-x-3">
             <img src={ruralisLogo} alt="Ruralis Capital Logo" className="w-10 h-10" />
             <div>
-              <h1 className="text-xl font-bold text-primary">
-                Ruralis Capital <span className="text-prosperity">SARL</span>
+              <h1 className="text-lg font-bold">
+                <span className="text-success">Ruralis</span> <span className="text-prosperity">Capital</span>
               </h1>
-              <p className="text-[10px] text-prosperity italic whitespace-nowrap">"Finançons vos plantations, récoltons vos succès"</p>
+              <p className="text-[9px] text-prosperity italic leading-none">"Finançons vos plantations, récoltons vos succès"</p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
-            <a href="#accueil" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('accueil')?.scrollIntoView({behavior: 'smooth'})}>
+          <nav className="hidden md:flex items-center space-x-3 lg:space-x-4">
+            <a href="#accueil" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('accueil')?.scrollIntoView({behavior: 'smooth'})}>
               Accueil
             </a>
-            <a href="#qui-sommes-nous" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('qui-sommes-nous')?.scrollIntoView({behavior: 'smooth'})}>
+            <a href="#qui-sommes-nous" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('qui-sommes-nous')?.scrollIntoView({behavior: 'smooth'})}>
               À propos
             </a>
-            <a href="#services" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})}>
+            <a href="#services" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})}>
               Services
             </a>
-            <a href="#palmier-huile" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('palmier-huile')?.scrollIntoView({behavior: 'smooth'})}>
+            <a href="#palmier-huile" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('palmier-huile')?.scrollIntoView({behavior: 'smooth'})}>
               Palmier
             </a>
-            <a href="#zones-intervention" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('zones-intervention')?.scrollIntoView({behavior: 'smooth'})}>
+            <a href="#zones-intervention" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('zones-intervention')?.scrollIntoView({behavior: 'smooth'})}>
               Régions
             </a>
-            <a href="#contact" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
+            <a href="#contact" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
               Contact
             </a>
           </nav>

@@ -33,12 +33,52 @@ const AboutUs = () => {
           <h2 className="text-4xl font-bold text-primary mb-4">
             Qui sommes-nous ?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Leader du financement agricole en Côte d'Ivoire depuis 5 ans
-          </p>
         </div>
 
-        {/* Notre entreprise */}
+        {/* Notre histoire */}
+        <div className="mb-16">
+          <h3 className="text-3xl font-bold text-primary mb-8">Notre histoire</h3>
+          <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
+            <p>
+              Ruralis Capital est née en Côte d'Ivoire d'un constat simple mais alarmant : malgré leur rôle central dans l'économie, les agriculteurs ivoiriens – et, plus largement, africains – véritables nourriciers des nations – peinent à vivre dignement de leur travail. Manque de financements et d'accompagnement adaptés, absence de garanties et véritables débouchés commerciaux, sols épuisés, vulnérabilité climatique et précarité économique freinent leur potentiel et menacent l'avenir de nombreux pays du continent.
+            </p>
+            <p>
+              Entre 2012 et 2024, Inocent KOFFI, fondateur et PDG de Ruralis Capital, a parcouru plus de 360 localités à travers 8 régions de Côte d'Ivoire. Cette immersion de 12 ans lui a permis de comprendre les besoins réels des producteurs, de renforcer la confiance avec les communautés rurales et de concevoir un modèle agricole pleinement adapté à leurs réalités.
+            </p>
+            <p>
+              De cette expérience unique est née Ruralis Capital SARL en 2019, avec une mission claire : créer un modèle intégré de financement agricole qui conjugue rentabilité économique et impact social transformationnel.
+            </p>
+            <p className="font-semibold text-primary">
+              Ruralis Capital se positionne comme première entreprise et leader du financement agricole et services intégrés en Côte d'Ivoire et en Afrique.
+            </p>
+          </div>
+        </div>
+
+        {/* Notre mission */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 className="text-3xl font-bold text-primary mb-6">Notre mission</h3>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              Démocratiser l'accès aux plantations agricoles rentables pour que chaque agriculteur, qu'il soit petit producteur ou exploitant à plus grande échelle, puisse investir, produire et prospérer, en bénéficiant d'un accompagnement structuré et d'un financement adapté à ses besoins.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold text-primary mb-6">Notre vision</h3>
+            <p className="text-muted-foreground mb-4">
+              Nous croyons que l'agriculture est la clé du développement durable. Notre ambition est de :
+            </p>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>• Stimuler l'économie en zone rurale</li>
+              <li>• Améliorer les conditions de vie des communautés agricoles</li>
+              <li>• Atteindre l'autosuffisance alimentaire</li>
+              <li>• Renforcer l'économie nationale et continentale</li>
+              <li>• Impacter positivement le monde et les générations futures, en valorisant ce par quoi tout commence : la terre et l'agriculture</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Notre entreprise - infos de base */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
             <h3 className="text-3xl font-bold text-primary">Notre entreprise</h3>
@@ -50,14 +90,6 @@ const AboutUs = () => {
               <div className="bg-card p-6 rounded-xl shadow-sm">
                 <h4 className="font-semibold text-lg text-primary mb-2">Siège social</h4>
                 <p className="text-muted-foreground">Daloa, Côte d'Ivoire</p>
-              </div>
-              <div className="bg-card p-6 rounded-xl shadow-sm">
-                <h4 className="font-semibold text-lg text-primary mb-2">Direction</h4>
-                <p className="text-muted-foreground">PDG Inocent KOFFI et 7 associés fondateurs</p>
-              </div>
-              <div className="bg-card p-6 rounded-xl shadow-sm">
-                <h4 className="font-semibold text-lg text-primary mb-2">Mission</h4>
-                <p className="text-muted-foreground">Démocratiser l'accès aux plantations rentables pour tous les agriculteurs</p>
               </div>
             </div>
           </div>
@@ -95,7 +127,10 @@ const AboutUs = () => {
 
         {/* Nos valeurs */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary text-center mb-12">Nos valeurs</h3>
+          <h3 className="text-3xl font-bold text-primary mb-8">Nos valeurs</h3>
+          <p className="text-muted-foreground mb-8">
+            Nous plaçons la transparence, l'innovation, la durabilité et la solidarité au cœur de notre action. Concrètement :
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
@@ -108,6 +143,44 @@ const AboutUs = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+
+        {/* Notre équipe */}
+        <div className="mb-16">
+          <h3 className="text-3xl font-bold text-primary mb-8">Notre équipe</h3>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            <div>
+              <h4 className="text-xl font-bold text-primary mb-4">Les associés fondateurs</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Ruralis Capital est le fruit de la vision d'Inocent KOFFI, soutenue par 7 associés, tous convaincus que l'agriculture est un levier clé du développement, tant pour la Côte d'Ivoire que pour l'ensemble du continent africain. Ensemble, ils ont mis en commun leurs expertises, leur engagement et leur passion pour créer un modèle agricole durable, rentable et orienté vers l'impact social. Le groupe veille à ce que la mission sociale et économique demeure au cœur de chacune de leurs actions.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="text-xl font-bold text-primary mb-4">L'équipe de direction opérationnelle</h4>
+              <p className="text-muted-foreground mb-4">
+                Pour concrétiser cette vision sur le terrain, Ruralis Capital s'appuie sur une équipe opérationnelle experte et dédiée :
+              </p>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• <strong>Directeurs techniques :</strong> encadrent les activités agronomiques, pilotent l'innovation et supervisent le suivi des plantations</li>
+                <li>• <strong>Directeurs financiers et administratifs :</strong> garantissent une gestion transparente des investissements et financements</li>
+                <li>• <strong>Chefs de projets et coordonnateurs régionaux :</strong> assurent le lien direct avec les agriculteurs et partenaires locaux, offrant un accompagnement structuré et efficace</li>
+              </ul>
+              <p className="text-muted-foreground mt-4">
+                Cette organisation, complétée par d'autres équipes spécialisées, forme un collectif solide où vision stratégique, expertise technique et engagement social convergent pour transformer l'agriculture ivoirienne et africaine.
+              </p>
+            </div>
+          </div>
+
+          {/* Un mot du fondateur */}
+          <div className="bg-gradient-to-r from-prosperity/5 to-success/5 p-8 rounded-2xl">
+            <h4 className="text-xl font-bold text-primary mb-4">Un mot du fondateur</h4>
+            <blockquote className="text-lg text-muted-foreground italic leading-relaxed">
+              « J'ai choisi de consacrer 12 années de ma vie à comprendre les réalités des agriculteurs dans les villages de Côte d'Ivoire. Ruralis Capital est le fruit de cette écoute, de ce travail et de cette vision : bâtir un modèle où l'agriculture n'est plus une lutte pour survivre, mais un moteur de prospérité pour les familles, les communautés et toute l'Afrique. »
+            </blockquote>
+            <cite className="block text-primary font-semibold mt-4">— Inocent KOFFI, Fondateur & PDG</cite>
           </div>
         </div>
 

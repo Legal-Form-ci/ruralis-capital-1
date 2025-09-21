@@ -10,6 +10,8 @@ const RevenueCalculator = () => {
   const { toast } = useToast();
   const [calculatorData, setCalculatorData] = useState({
     hectares: "",
+    prixMarche: "80",
+    anneeProduction: "",
     region: "",
     name: "",
     phone: ""
@@ -26,20 +28,35 @@ const RevenueCalculator = () => {
     "Marahoué"
   ];
 
+  const getRendementParHa = (annee: number): number => {
+    if (annee == 1) return 0;
+    if (annee == 2) return 3;
+    if (annee == 3) return 6;
+    if (annee == 4) return 9;
+    if (annee == 5) return 12;
+    if (annee == 6) return 15;
+    if (annee == 7) return 17;
+    if (annee >= 8 && annee <= 20) return 18;
+    if (annee == 21) return 16;
+    if (annee == 22) return 14;
+    if (annee == 23) return 12;
+    if (annee == 24) return 10;
+    if (annee == 25) return 8;
+    return 0;
+  };
+
   const calculateRevenue = () => {
-    if (calculatorData.hectares) {
+    if (calculatorData.hectares && calculatorData.anneeProduction && calculatorData.prixMarche) {
       const hectares = parseInt(calculatorData.hectares);
-      const yearlyProduction = hectares * 18; // 18 tonnes par hectare
-      const pricePerKg = 650; // 650 F CFA/kg (prix réaliste du marché)
-      const yearlyRevenue = yearlyProduction * 1000 * pricePerKg; // conversion en kg
-      const operationalCosts = yearlyRevenue * 0.30; // 30% de coûts opérationnels
-      const partnershipFee = yearlyRevenue * 0.15; // 15% de commission Ruralis
-      const netRevenue = yearlyRevenue - operationalCosts - partnershipFee;
-      const monthlyRevenue = netRevenue / 12;
+      const annee = parseInt(calculatorData.anneeProduction);
+      const prixKg = parseInt(calculatorData.prixMarche);
+      const rendement = getRendementParHa(annee);
+      const yearlyRevenue = Math.round(hectares * rendement * prixKg * 1000);
+      const monthlyRevenue = Math.round(yearlyRevenue / 12);
       
       toast({
-        title: `💰 Estimation pour ${hectares} hectare(s)`,
-        description: `Production: ${yearlyProduction}t/an • Revenus nets: ${Math.round(netRevenue).toLocaleString()} F CFA/an (${Math.round(monthlyRevenue).toLocaleString()} F CFA/mois)`,
+        title: `💰 Estimation pour ${hectares} hectare(s) - Année ${annee}`,
+        description: `Rendement: ${rendement}t/ha • Revenus: ${yearlyRevenue.toLocaleString()} F CFA/an (${monthlyRevenue.toLocaleString()} F CFA/mois)`,
       });
     }
   };
@@ -50,7 +67,7 @@ const RevenueCalculator = () => {
       title: "Demande de simulation envoyée !",
       description: "Notre équipe vous contactera pour affiner votre simulation et vous présenter un plan détaillé.",
     });
-    setCalculatorData({ hectares: "", region: "", name: "", phone: "" });
+    setCalculatorData({ hectares: "", prixMarche: "80", anneeProduction: "", region: "", name: "", phone: "" });
   };
 
   return (
@@ -79,7 +96,31 @@ const RevenueCalculator = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Région</label>
+              <label className="block text-sm font-medium mb-2">Prix du marché (F CFA/kg)</label>
+              <Input
+                placeholder="80"
+                type="number"
+                value={calculatorData.prixMarche}
+                onChange={(e) => setCalculatorData({...calculatorData, prixMarche: e.target.value})}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-2">Année de production</label>
+              <Input
+                placeholder="1 à 25 ans"
+                type="number"
+                min="1"
+                max="25"
+                value={calculatorData.anneeProduction}
+                onChange={(e) => setCalculatorData({...calculatorData, anneeProduction: e.target.value})}
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-2">Région (optionnel)</label>
               <Select value={calculatorData.region} onValueChange={(value) => setCalculatorData({...calculatorData, region: value})}>
                 <SelectTrigger>
                   <SelectValue placeholder="Sélectionnez votre région" />
@@ -101,7 +142,7 @@ const RevenueCalculator = () => {
               variant="prosperity" 
               size="lg"
               onClick={calculateRevenue}
-              disabled={!calculatorData.hectares}
+              disabled={!calculatorData.hectares || !calculatorData.anneeProduction || !calculatorData.prixMarche}
               className="w-full md:w-auto"
             >
               <Calculator className="w-4 h-4 mr-2" />
@@ -109,33 +150,40 @@ const RevenueCalculator = () => {
             </Button>
           </div>
 
-          {calculatorData.hectares && (
+          {calculatorData.hectares && calculatorData.anneeProduction && calculatorData.prixMarche && (
             <div className="bg-gradient-to-r from-prosperity/5 to-success/5 p-6 rounded-lg border">
               <h3 className="text-lg font-semibold text-primary mb-4 flex items-center">
                 <TrendingUp className="w-5 h-5 mr-2" />
                 Projection financière détaillée
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-prosperity">
-                    {(parseInt(calculatorData.hectares) * 18).toLocaleString()}t
+                    {getRendementParHa(parseInt(calculatorData.anneeProduction))}t/ha
+                  </div>
+                  <div className="text-sm text-muted-foreground">Rendement année {calculatorData.anneeProduction}</div>
+                </div>
+
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-success">
+                    {(parseInt(calculatorData.hectares) * getRendementParHa(parseInt(calculatorData.anneeProduction))).toLocaleString()}t
                   </div>
                   <div className="text-sm text-muted-foreground">Production annuelle</div>
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-success">
-                    {Math.round((parseInt(calculatorData.hectares) * 18 * 1000 * 650 * 0.55) / 12).toLocaleString()}
+                  <div className="text-2xl font-bold text-primary">
+                    {Math.round((parseInt(calculatorData.hectares) * getRendementParHa(parseInt(calculatorData.anneeProduction)) * parseInt(calculatorData.prixMarche) * 1000) / 12).toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">F CFA/mois (nets)</div>
+                  <div className="text-sm text-muted-foreground">F CFA/mois</div>
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">
-                    {Math.round(parseInt(calculatorData.hectares) * 18 * 1000 * 650 * 0.55).toLocaleString()}
+                  <div className="text-2xl font-bold text-prosperity">
+                    {Math.round(parseInt(calculatorData.hectares) * getRendementParHa(parseInt(calculatorData.anneeProduction)) * parseInt(calculatorData.prixMarche) * 1000).toLocaleString()}
                   </div>
-                  <div className="text-sm text-muted-foreground">F CFA/an (nets)</div>
+                  <div className="text-sm text-muted-foreground">F CFA/an</div>
                 </div>
               </div>
             </div>
