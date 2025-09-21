@@ -30,14 +30,16 @@ const RevenueCalculator = () => {
     if (calculatorData.hectares) {
       const hectares = parseInt(calculatorData.hectares);
       const yearlyProduction = hectares * 18; // 18 tonnes par hectare
-      const yearlyRevenue = yearlyProduction * 60 * 12; // 60 F CFA/kg * 12 mois
-      const redevances = yearlyRevenue * 0.2; // 20% de redevances
-      const netRevenue = yearlyRevenue - redevances;
+      const pricePerKg = 650; // 650 F CFA/kg (prix réaliste du marché)
+      const yearlyRevenue = yearlyProduction * 1000 * pricePerKg; // conversion en kg
+      const operationalCosts = yearlyRevenue * 0.30; // 30% de coûts opérationnels
+      const partnershipFee = yearlyRevenue * 0.15; // 15% de commission Ruralis
+      const netRevenue = yearlyRevenue - operationalCosts - partnershipFee;
       const monthlyRevenue = netRevenue / 12;
       
       toast({
         title: `💰 Estimation pour ${hectares} hectare(s)`,
-        description: `Production: ${yearlyProduction}t/an • Revenus nets: ${netRevenue.toLocaleString()} F CFA/an (${Math.round(monthlyRevenue).toLocaleString()} F CFA/mois)`,
+        description: `Production: ${yearlyProduction}t/an • Revenus nets: ${Math.round(netRevenue).toLocaleString()} F CFA/an (${Math.round(monthlyRevenue).toLocaleString()} F CFA/mois)`,
       });
     }
   };
@@ -124,14 +126,14 @@ const RevenueCalculator = () => {
                 
                 <div className="text-center">
                   <div className="text-2xl font-bold text-success">
-                    {Math.round((parseInt(calculatorData.hectares) * 18 * 60 * 12 * 0.8) / 12).toLocaleString()}
+                    {Math.round((parseInt(calculatorData.hectares) * 18 * 1000 * 650 * 0.55) / 12).toLocaleString()}
                   </div>
                   <div className="text-sm text-muted-foreground">F CFA/mois (nets)</div>
                 </div>
                 
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">
-                    {(parseInt(calculatorData.hectares) * 18 * 60 * 12 * 0.8).toLocaleString()}
+                    {Math.round(parseInt(calculatorData.hectares) * 18 * 1000 * 650 * 0.55).toLocaleString()}
                   </div>
                   <div className="text-sm text-muted-foreground">F CFA/an (nets)</div>
                 </div>

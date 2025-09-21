@@ -102,9 +102,11 @@ const Hero = () => {
               </div>
             </div>
             
-            <Button variant="prosperity" className="w-full mt-6" size="lg">
-              Rejoindre nos agriculteurs
-            </Button>
+            <FormModal type="join">
+              <Button variant="prosperity" className="w-full mt-6" size="lg">
+                Rejoindre nos agriculteurs
+              </Button>
+            </FormModal>
           </div>
         </div>
       </div>

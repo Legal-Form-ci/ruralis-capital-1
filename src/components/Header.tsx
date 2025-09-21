@@ -14,43 +14,43 @@ const Header = () => {
           <div className="flex items-center space-x-3">
             <img src={ruralisLogo} alt="Ruralis Capital Logo" className="w-10 h-10" />
             <div>
-              <h1 className="text-2xl font-bold text-primary">
+              <h1 className="text-xl font-bold text-primary">
                 Ruralis Capital <span className="text-prosperity">SARL</span>
               </h1>
-              <p className="text-xs text-prosperity italic">"Finançons vos plantations, récoltons vos succès"</p>
+              <p className="text-[10px] text-prosperity italic whitespace-nowrap">"Finançons vos plantations, récoltons vos succès"</p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#accueil" className="text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('accueil')?.scrollIntoView({behavior: 'smooth'})}>
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            <a href="#accueil" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('accueil')?.scrollIntoView({behavior: 'smooth'})}>
               Accueil
             </a>
-            <a href="#qui-sommes-nous" className="text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('qui-sommes-nous')?.scrollIntoView({behavior: 'smooth'})}>
-              Qui sommes-nous
+            <a href="#qui-sommes-nous" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('qui-sommes-nous')?.scrollIntoView({behavior: 'smooth'})}>
+              À propos
             </a>
-            <a href="#services" className="text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})}>
+            <a href="#services" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})}>
               Services
             </a>
-            <a href="#palmier-huile" className="text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('palmier-huile')?.scrollIntoView({behavior: 'smooth'})}>
-              Palmier à huile
+            <a href="#palmier-huile" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('palmier-huile')?.scrollIntoView({behavior: 'smooth'})}>
+              Palmier
             </a>
-            <a href="#zones-intervention" className="text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('zones-intervention')?.scrollIntoView({behavior: 'smooth'})}>
-              Nos régions
+            <a href="#zones-intervention" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('zones-intervention')?.scrollIntoView({behavior: 'smooth'})}>
+              Régions
             </a>
-            <a href="#contact" className="text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
+            <a href="#contact" className="text-sm lg:text-base text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
               Contact
             </a>
           </nav>
 
           {/* Contact Info & CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <Phone className="w-4 h-4" />
+          <div className="hidden xl:flex items-center space-x-3">
+            <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+              <Phone className="w-3 h-3" />
               <span>+225 0759566087</span>
             </div>
-            <Button variant="prosperity" size="sm">
-              Nous contacter
+            <Button variant="prosperity" size="sm" className="text-xs px-3">
+              Contact
             </Button>
           </div>
 

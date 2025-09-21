@@ -3,9 +3,10 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import RevenueCalculator from "./RevenueCalculator";
 import TerrainVisitForm from "./TerrainVisitForm";
+import JoinFarmersForm from "./JoinFarmersForm";
 
 interface FormModalProps {
-  type: "revenue" | "visit";
+  type: "revenue" | "visit" | "join";
   children: React.ReactNode;
 }
 
@@ -18,7 +19,9 @@ const FormModal = ({ type, children }: FormModalProps) => {
         {children}
       </DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        {type === "revenue" ? <RevenueCalculator /> : <TerrainVisitForm />}
+        {type === "revenue" ? <RevenueCalculator /> : 
+         type === "visit" ? <TerrainVisitForm /> : 
+         <JoinFarmersForm />}
       </DialogContent>
     </Dialog>
   );
