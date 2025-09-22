@@ -1,6 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, MapPin, TrendingUp } from "lucide-react";
-import farmersImage from "@/assets/farmers-harvesting.jpg";
+import palmPlantationImage from "@/assets/palm-plantation-ivory-coast.jpg";
+import farmer1 from "@/assets/farmer-1.jpg";
+import farmer2 from "@/assets/farmer-2.jpg";
+import farmer3 from "@/assets/farmer-3.jpg";
 
 const Testimonials = () => {
   const testimonials = [
@@ -10,7 +13,8 @@ const Testimonials = () => {
       hectares: "2 hectares",
       monthlyRevenue: "225 000 F CFA",
       quote: "Avant Ruralis Capital, je cultivais une culture traditionnelle bien connue en Côte d'Ivoire, sur 2 hectares, et je gagnais au maximum 800 000 F CFA par an. Avec le temps, ma plantation a vieilli et je n'arrivais plus à joindre les deux bouts. Aujourd'hui, grâce à Ruralis Capital, j'ai pu créer une plantation de palmiers sur la même parcelle. Avec ces 2 hectares, je récolte 36 tonnes par an. Même après les redevances, je gagne 2 700 000 F CFA par an. Mieux encore, mes revenus sont désormais mensuels : environ 225 000 F CFA chaque mois, contrairement à l'ancienne culture. Grâce à cela, tous mes enfants sont scolarisés et j'ai pu construire une nouvelle maison.",
-      yearsSince: "en production depuis 2021"
+      yearsSince: "en production depuis 2021",
+      photo: farmer1
     },
     {
       name: "Konan Yao", 
@@ -18,7 +22,8 @@ const Testimonials = () => {
       hectares: "3 hectares",
       monthlyRevenue: "283 000 F CFA",
       quote: "Les techniciens de Ruralis m'ont accompagné dès le premier jour. Mes palmiers produisent 19 tonnes à l'hectare ! L'année dernière, j'ai gagné 3,4 millions F CFA. J'ai même pu acheter un véhicule pour transporter d'autres agriculteurs.",
-      yearsSince: "en production depuis 2020"
+      yearsSince: "en production depuis 2020",
+      photo: farmer3
     },
     {
       name: "Akissi Fatou",
@@ -26,7 +31,8 @@ const Testimonials = () => {
       hectares: "2 hectares",
       monthlyRevenue: "225 000 F CFA",
       quote: "Ce qui me plaît, c'est que Ruralis rachète tout. Pas besoin de chercher des acheteurs ou de négocier les prix. Chaque mois, je touche entre 200 000 et 250 000 F selon la production. C'est stable et prévisible.",
-      yearsSince: "en production depuis 2022"
+      yearsSince: "en production depuis 2022",
+      photo: farmer2
     }
   ];
 
@@ -49,8 +55,12 @@ const Testimonials = () => {
               <Card key={index} className="hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-prosperity/10 p-3 rounded-full flex-shrink-0">
-                      <Quote className="w-6 h-6 text-prosperity" />
+                    <div className="flex-shrink-0">
+                      <img 
+                        src={testimonial.photo} 
+                        alt={testimonial.name}
+                        className="w-16 h-16 rounded-full object-cover shadow-md"
+                      />
                     </div>
                     <div className="flex-1">
                       <p className="text-muted-foreground mb-4 italic">
@@ -94,8 +104,8 @@ const Testimonials = () => {
           {/* Image */}
           <div className="relative">
             <img 
-              src={farmersImage}
-              alt="Agriculteurs récoltant les fruits de palmier"
+              src={palmPlantationImage}
+              alt="Plantation de palmiers à huile en Côte d'Ivoire"
               className="w-full rounded-2xl shadow-xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-2xl"></div>

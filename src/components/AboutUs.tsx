@@ -44,7 +44,7 @@ const AboutUs = () => {
               Ruralis Capital est née en Côte d'Ivoire d'un constat simple mais alarmant : malgré leur rôle central dans l'économie, les agriculteurs ivoiriens – et plus largement africains, véritables nourriciers des nations – peinent à vivre dignement de leur travail. Le manque de financements et d'accompagnement adaptés, l'absence de garanties et de débouchés commerciaux fiables, des sols épuisés, la vulnérabilité climatique et la précarité économique freinent leur potentiel et menacent l'avenir de nombreux pays du continent.
             </p>
             <p>
-              Entre 2012 et 2024, Inocent KOFFI, fondateur et PDG de Ruralis Capital, a parcouru plus de 360 localités à travers 8 régions de Côte d'Ivoire. Cette immersion de 12 ans lui a permis de comprendre les besoins réels des producteurs, de renforcer la confiance avec les communautés rurales et de concevoir un modèle agricole pleinement adapté à leurs réalités.
+              Entre 2012 et 2024, Inocent KOFFI, aujourd'hui fondateur et PDG de Ruralis Capital, a parcouru plus de 360 localités à travers 8 régions de Côte d'Ivoire. Cette immersion de 12 ans lui a permis de comprendre les besoins réels des producteurs, de renforcer la confiance avec les communautés rurales et de concevoir un modèle agricole pleinement adapté à leurs réalités.
             </p>
             <p>
               De cette expérience unique est née Ruralis Capital SARL en 2019, avec une mission claire : créer un modèle intégré de financement agricole qui conjugue rentabilité économique et impact social transformationnel.
@@ -175,9 +175,8 @@ const AboutUs = () => {
             </div>
           </div>
 
-          {/* Un mot du fondateur */}
+          {/* Mot du fondateur */}
           <div className="bg-gradient-to-r from-prosperity/5 to-success/5 p-8 rounded-2xl">
-            <h4 className="text-xl font-bold text-primary mb-6">Un mot du fondateur</h4>
             <div className="flex flex-col lg:flex-row gap-6 items-start">
               <div className="flex-shrink-0">
                 <img 

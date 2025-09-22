@@ -17,7 +17,7 @@ const Header = () => {
               <h1 className="text-xl font-bold">
                 <span className="text-success">RURALIS</span> <span className="text-prosperity">CAPITAL</span>
               </h1>
-              <p className="text-[8px] text-prosperity italic leading-none max-w-[120px]">"Finançons vos plantations, récoltons vos succès"</p>
+              <p className="text-[8px] text-prosperity italic leading-none whitespace-nowrap">"Finançons vos plantations, récoltons vos succès"</p>
             </div>
           </div>
 
