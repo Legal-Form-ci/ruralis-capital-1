@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Award, Target, Heart } from "lucide-react";
+import founderPhoto from "@/assets/founder-photo.jpg";
 
 const AboutUs = () => {
   const values = [
@@ -15,8 +16,8 @@ const AboutUs = () => {
     },
     {
       icon: <Award className="w-8 h-8 text-prosperity" />,
-      title: "Innovation agricole",
-      description: "Techniques modernes pour maximiser les rendements."
+      title: "Innovation agricole et financière",
+      description: "Développement de modèles financiers adaptés aux réalités locales et techniques modernes pour maximiser les rendements."
     },
     {
       icon: <Heart className="w-8 h-8 text-success" />,
@@ -40,7 +41,7 @@ const AboutUs = () => {
           <h3 className="text-3xl font-bold text-primary mb-8">Notre histoire</h3>
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
             <p>
-              Ruralis Capital est née en Côte d'Ivoire d'un constat simple mais alarmant : malgré leur rôle central dans l'économie, les agriculteurs ivoiriens – et, plus largement, africains – véritables nourriciers des nations – peinent à vivre dignement de leur travail. Manque de financements et d'accompagnement adaptés, absence de garanties et véritables débouchés commerciaux, sols épuisés, vulnérabilité climatique et précarité économique freinent leur potentiel et menacent l'avenir de nombreux pays du continent.
+              Ruralis Capital est née en Côte d'Ivoire d'un constat simple mais alarmant : malgré leur rôle central dans l'économie, les agriculteurs ivoiriens – et plus largement africains, véritables nourriciers des nations – peinent à vivre dignement de leur travail. Le manque de financements et d'accompagnement adaptés, l'absence de garanties et de débouchés commerciaux fiables, des sols épuisés, la vulnérabilité climatique et la précarité économique freinent leur potentiel et menacent l'avenir de nombreux pays du continent.
             </p>
             <p>
               Entre 2012 et 2024, Inocent KOFFI, fondateur et PDG de Ruralis Capital, a parcouru plus de 360 localités à travers 8 régions de Côte d'Ivoire. Cette immersion de 12 ans lui a permis de comprendre les besoins réels des producteurs, de renforcer la confiance avec les communautés rurales et de concevoir un modèle agricole pleinement adapté à leurs réalités.
@@ -128,9 +129,9 @@ const AboutUs = () => {
         {/* Nos valeurs */}
         <div className="mb-16">
           <h3 className="text-3xl font-bold text-primary mb-8">Nos valeurs</h3>
-          <p className="text-muted-foreground mb-8">
-            Nous plaçons la transparence, l'innovation, la durabilité et la solidarité au cœur de notre action. Concrètement :
-          </p>
+            <p className="text-muted-foreground mb-8">
+              Nous plaçons la transparence, l'innovation, la durabilité et la solidarité au cœur de notre action. Concrètement :
+            </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
@@ -176,11 +177,22 @@ const AboutUs = () => {
 
           {/* Un mot du fondateur */}
           <div className="bg-gradient-to-r from-prosperity/5 to-success/5 p-8 rounded-2xl">
-            <h4 className="text-xl font-bold text-primary mb-4">Un mot du fondateur</h4>
-            <blockquote className="text-lg text-muted-foreground italic leading-relaxed">
-              « J'ai choisi de consacrer 12 années de ma vie à comprendre les réalités des agriculteurs dans les villages de Côte d'Ivoire. Ruralis Capital est le fruit de cette écoute, de ce travail et de cette vision : bâtir un modèle où l'agriculture n'est plus une lutte pour survivre, mais un moteur de prospérité pour les familles, les communautés et toute l'Afrique. »
-            </blockquote>
-            <cite className="block text-primary font-semibold mt-4">— Inocent KOFFI, Fondateur & PDG</cite>
+            <h4 className="text-xl font-bold text-primary mb-6">Un mot du fondateur</h4>
+            <div className="flex flex-col lg:flex-row gap-6 items-start">
+              <div className="flex-shrink-0">
+                <img 
+                  src={founderPhoto} 
+                  alt="Inocent KOFFI, Fondateur & PDG" 
+                  className="w-32 h-32 lg:w-40 lg:h-40 rounded-full object-cover shadow-lg"
+                />
+              </div>
+              <div className="flex-1">
+                <blockquote className="text-lg text-muted-foreground italic leading-relaxed mb-4">
+                  « J'ai choisi de consacrer 12 années de ma vie à comprendre les réalités des agriculteurs dans les villages de Côte d'Ivoire. Ruralis Capital est le fruit de cette écoute, de ce travail et de cette vision : bâtir un modèle où l'agriculture n'est plus une lutte pour survivre, mais un moteur de prospérité pour les familles, les communautés et toute l'Afrique. »
+                </blockquote>
+                <cite className="block text-primary font-semibold">— Inocent KOFFI, Fondateur & PDG</cite>
+              </div>
+            </div>
           </div>
         </div>
 

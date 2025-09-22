@@ -14,10 +14,10 @@ const Header = () => {
           <div className="flex items-center space-x-3">
             <img src={ruralisLogo} alt="Ruralis Capital Logo" className="w-10 h-10" />
             <div>
-              <h1 className="text-lg font-bold">
-                <span className="text-success">Ruralis</span> <span className="text-prosperity">Capital</span>
+              <h1 className="text-xl font-bold">
+                <span className="text-success">RURALIS</span> <span className="text-prosperity">CAPITAL</span>
               </h1>
-              <p className="text-[9px] text-prosperity italic leading-none">"Finançons vos plantations, récoltons vos succès"</p>
+              <p className="text-[8px] text-prosperity italic leading-none max-w-[120px]">"Finançons vos plantations, récoltons vos succès"</p>
             </div>
           </div>
 
