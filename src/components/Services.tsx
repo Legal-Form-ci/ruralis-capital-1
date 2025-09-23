@@ -146,30 +146,48 @@ const Services = () => {
 
         {/* Simulation de revenus */}
         <div className="bg-gradient-to-r from-success/10 to-prosperity/10 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">
-            Simulation de revenus - Exemple : Plantation de 3 hectares
-          </h3>
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <TrendingUp className="w-8 h-8 text-prosperity" />
+              <h3 className="text-2xl font-bold text-primary">
+                Simulation de revenus - Exemple : Plantation de 3 hectares
+              </h3>
+              <TrendingUp className="w-8 h-8 text-prosperity" />
+            </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <Card className="text-center">
               <CardContent className="p-6">
+                <div className="bg-prosperity/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Banknote className="w-6 h-6 text-prosperity" />
+                </div>
                 <div className="text-2xl font-bold text-prosperity mb-2">120 000 F</div>
                 <div className="text-sm text-muted-foreground">Votre investissement total sur 4 ans</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="p-6">
+                <div className="bg-success/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <TrendingUp className="w-6 h-6 text-success" />
+                </div>
                 <div className="text-2xl font-bold text-success mb-2">3 240 000 F</div>
                 <div className="text-sm text-muted-foreground">Vos revenus annuels dès la 4e année</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="p-6">
+                <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Banknote className="w-6 h-6 text-primary" />
+                </div>
                 <div className="text-2xl font-bold text-primary mb-2">648 000 F</div>
                 <div className="text-sm text-muted-foreground">Redevances annuelles (20%)</div>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="p-6">
+                <div className="bg-prosperity/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <TrendingUp className="w-6 h-6 text-prosperity" />
+                </div>
                 <div className="text-2xl font-bold text-prosperity mb-2">2 592 000 F</div>
                 <div className="text-sm text-muted-foreground">Votre profit net annuel pendant 16 ans</div>
               </CardContent>

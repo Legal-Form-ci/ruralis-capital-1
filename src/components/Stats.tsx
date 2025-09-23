@@ -129,7 +129,11 @@ const Stats = () => {
         {/* Additional highlight */}
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-prosperity/10 to-success/10 rounded-2xl p-8 max-w-4xl mx-auto">
-            <div className="text-4xl font-bold text-prosperity mb-2">285 000 F CFA</div>
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <Coins className="w-10 h-10 text-prosperity" />
+              <div className="text-4xl font-bold text-prosperity">285 000 F CFA</div>
+              <Coins className="w-10 h-10 text-prosperity" />
+            </div>
             <div className="text-xl font-semibold text-primary mb-2">
               Revenu mensuel moyen par agriculteur producteur
             </div>

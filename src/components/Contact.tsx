@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Phone, Mail, MapPin, Clock, Calculator } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Calculator, TrendingUp, Users, ShieldCheck, Banknote, User, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -56,9 +56,13 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-prosperity/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">
-            Démarrez votre nouvelle plantation dès aujourd'hui
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Phone className="w-8 h-8 text-prosperity" />
+            <h2 className="text-4xl font-bold text-primary">
+              Démarrez votre nouvelle plantation dès aujourd'hui
+            </h2>
+            <Phone className="w-8 h-8 text-prosperity" />
+          </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Contactez-nous pour une évaluation gratuite de votre terrain et commencez votre transformation agricole
           </p>
@@ -75,6 +79,10 @@ const Contact = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
+                  <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    Nom complet *
+                  </label>
                   <Input
                     placeholder="Votre nom complet"
                     value={formData.name}
@@ -84,6 +92,10 @@ const Contact = () => {
                 </div>
                 
                 <div>
+                  <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                    <Phone className="w-4 h-4" />
+                    Numéro de téléphone *
+                  </label>
                   <Input
                     placeholder="Numéro de téléphone"
                     value={formData.phone}
@@ -93,6 +105,10 @@ const Contact = () => {
                 </div>
 
                 <div>
+                  <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    Région *
+                  </label>
                   <Select value={formData.region} onValueChange={(value) => setFormData({...formData, region: value})}>
                     <SelectTrigger>
                       <SelectValue placeholder="Sélectionnez votre région" />
@@ -108,13 +124,19 @@ const Contact = () => {
                 </div>
 
                 <div className="flex space-x-4">
-                  <Input
-                    placeholder="Superficie (hectares)"
-                    type="number"
-                    value={formData.hectares}
-                    onChange={(e) => setFormData({...formData, hectares: e.target.value})}
-                    required
-                  />
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                      <MapPin className="w-4 h-4" />
+                      Superficie (hectares) *
+                    </label>
+                    <Input
+                      placeholder="Superficie (hectares)"
+                      type="number"
+                      value={formData.hectares}
+                      onChange={(e) => setFormData({...formData, hectares: e.target.value})}
+                      required
+                    />
+                  </div>
                   <Button 
                     type="button" 
                     variant="prosperity" 
@@ -126,6 +148,10 @@ const Contact = () => {
                 </div>
 
                 <div>
+                  <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4" />
+                    Message (optionnel)
+                  </label>
                   <Textarea
                     placeholder="Message (optionnel) - Décrivez votre projet ou posez vos questions"
                     value={formData.message}
@@ -218,23 +244,38 @@ const Contact = () => {
             {/* Quick Stats */}
             <Card className="shadow-lg bg-gradient-to-r from-success/10 to-prosperity/10">
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-primary mb-4">
-                  Pourquoi nous rejoindre ?
-                </h3>
+                <div className="flex items-center gap-2 mb-4">
+                  <TrendingUp className="w-6 h-6 text-prosperity" />
+                  <h3 className="text-xl font-bold text-primary">
+                    Pourquoi nous rejoindre ?
+                  </h3>
+                </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
+                    <div className="bg-prosperity/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <TrendingUp className="w-5 h-5 text-prosperity" />
+                    </div>
                     <div className="text-2xl font-bold text-prosperity">95%</div>
                     <div className="text-sm text-muted-foreground">Taux de réussite</div>
                   </div>
                   <div className="text-center">
+                    <div className="bg-success/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Users className="w-5 h-5 text-success" />
+                    </div>
                     <div className="text-2xl font-bold text-success">18 t/ha</div>
                     <div className="text-sm text-muted-foreground">Rendement moyen</div>
                   </div>
                   <div className="text-center">
+                    <div className="bg-prosperity/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <ShieldCheck className="w-5 h-5 text-prosperity" />
+                    </div>
                     <div className="text-2xl font-bold text-prosperity">20 ans</div>
                     <div className="text-sm text-muted-foreground">Contrat garanti</div>
                   </div>
                   <div className="text-center">
+                    <div className="bg-success/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Banknote className="w-5 h-5 text-success" />
+                    </div>
                     <div className="text-2xl font-bold text-success">0 F CFA</div>
                     <div className="text-sm text-muted-foreground">Investissement initial</div>
                   </div>

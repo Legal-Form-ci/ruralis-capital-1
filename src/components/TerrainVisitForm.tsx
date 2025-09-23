@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Calendar, Clock, CheckCircle } from "lucide-react";
+import { MapPin, Calendar, Clock, CheckCircle, User, Phone, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const TerrainVisitForm = () => {
@@ -62,7 +62,10 @@ const TerrainVisitForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Nom complet *</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <User className="w-4 h-4" />
+                Nom complet *
+              </label>
               <Input
                 placeholder="Votre nom complet"
                 value={visitData.name}
@@ -72,7 +75,10 @@ const TerrainVisitForm = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Téléphone *</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Téléphone *
+              </label>
               <Input
                 placeholder="Numéro de téléphone"
                 value={visitData.phone}
@@ -84,7 +90,10 @@ const TerrainVisitForm = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Région *</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                Région *
+              </label>
               <Select value={visitData.region} onValueChange={(value) => setVisitData({...visitData, region: value})}>
                 <SelectTrigger>
                   <SelectValue placeholder="Sélectionnez votre région" />
@@ -100,7 +109,10 @@ const TerrainVisitForm = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Superficie estimée</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                Superficie estimée
+              </label>
               <Input
                 placeholder="Nombre d'hectares"
                 type="number"
@@ -111,7 +123,10 @@ const TerrainVisitForm = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Localisation précise du terrain *</label>
+            <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              Localisation précise du terrain *
+            </label>
             <Input
               placeholder="Village, sous-préfecture ou point de repère"
               value={visitData.location}
@@ -121,7 +136,10 @@ const TerrainVisitForm = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Date souhaitée pour la visite</label>
+            <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+              <Calendar className="w-4 h-4" />
+              Date souhaitée pour la visite
+            </label>
             <Input
               type="date"
               value={visitData.preferredDate}
@@ -130,7 +148,10 @@ const TerrainVisitForm = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">Message (optionnel)</label>
+            <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+              <MessageSquare className="w-4 h-4" />
+              Message (optionnel)
+            </label>
             <Textarea
               placeholder="Décrivez votre terrain, vos objectifs ou posez vos questions..."
               value={visitData.message}

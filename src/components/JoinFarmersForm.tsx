@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Users, MapPin, Sprout } from "lucide-react";
+import { Users, MapPin, Sprout, Phone, Mail, MessageSquare, User } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const JoinFarmersForm = () => {
@@ -77,7 +77,10 @@ const JoinFarmersForm = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Nom complet *</label>
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  Nom complet *
+                </label>
                 <Input
                   placeholder="Votre nom et prénom"
                   value={formData.name}
@@ -87,7 +90,10 @@ const JoinFarmersForm = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2">Téléphone *</label>
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  Téléphone *
+                </label>
                 <Input
                   placeholder="+225 XX XX XX XX XX"
                   value={formData.phone}
@@ -97,7 +103,10 @@ const JoinFarmersForm = () => {
               </div>
               
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-2">Email</label>
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  Email
+                </label>
                 <Input
                   type="email"
                   placeholder="votre.email@exemple.com"
@@ -116,24 +125,30 @@ const JoinFarmersForm = () => {
             </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Région *</label>
-                <Select value={formData.region} onValueChange={(value) => setFormData({...formData, region: value})}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Sélectionnez votre région" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {regions.map((region) => (
-                      <SelectItem key={region} value={region}>
-                        {region}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    Région *
+                  </label>
+                  <Select value={formData.region} onValueChange={(value) => setFormData({...formData, region: value})}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Sélectionnez votre région" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {regions.map((region) => (
+                        <SelectItem key={region} value={region}>
+                          {region}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2">Superficie disponible *</label>
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  Superficie disponible *
+                </label>
                 <Input
                   placeholder="Nombre d'hectares"
                   type="number"
@@ -153,7 +168,10 @@ const JoinFarmersForm = () => {
             </h3>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Niveau d'expérience *</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <Sprout className="w-4 h-4" />
+                Niveau d'expérience *
+              </label>
               <Select value={formData.farmingExperience} onValueChange={(value) => setFormData({...formData, farmingExperience: value})}>
                 <SelectTrigger>
                   <SelectValue placeholder="Sélectionnez votre niveau" />
@@ -169,7 +187,10 @@ const JoinFarmersForm = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Motivation et objectifs</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <MessageSquare className="w-4 h-4" />
+                Motivation et objectifs
+              </label>
               <Textarea
                 placeholder="Parlez-nous de votre projet, vos motivations et vos objectifs avec la plantation de palmier à huile..."
                 value={formData.motivation}

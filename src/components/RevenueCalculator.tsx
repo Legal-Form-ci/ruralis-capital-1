@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calculator, TrendingUp, MapPin } from "lucide-react";
+import { Calculator, TrendingUp, MapPin, Calendar, User, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const RevenueCalculator = () => {
@@ -85,7 +85,10 @@ const RevenueCalculator = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Superficie disponible</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                Superficie disponible *
+              </label>
               <Input
                 placeholder="Nombre d'hectares"
                 type="number"
@@ -96,7 +99,10 @@ const RevenueCalculator = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Prix du marché (F CFA/kg)</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <TrendingUp className="w-4 h-4" />
+                Prix du marché (F CFA/kg) *
+              </label>
               <Input
                 placeholder="80"
                 type="number"
@@ -107,7 +113,10 @@ const RevenueCalculator = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Année de production</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
+                Année de production *
+              </label>
               <Input
                 placeholder="1 à 25 ans"
                 type="number"
@@ -120,7 +129,10 @@ const RevenueCalculator = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium mb-2">Région (optionnel)</label>
+              <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                Région (optionnel)
+              </label>
               <Select value={calculatorData.region} onValueChange={(value) => setCalculatorData({...calculatorData, region: value})}>
                 <SelectTrigger>
                   <SelectValue placeholder="Sélectionnez votre région" />
@@ -190,21 +202,37 @@ const RevenueCalculator = () => {
           )}
 
           <div className="border-t pt-6">
-            <h4 className="font-semibold mb-4">Recevoir une simulation personnalisée</h4>
+            <div className="flex items-center gap-2 mb-4">
+              <User className="w-5 h-5 text-prosperity" />
+              <h4 className="font-semibold">Recevoir une simulation personnalisée</h4>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                placeholder="Votre nom complet"
-                value={calculatorData.name}
-                onChange={(e) => setCalculatorData({...calculatorData, name: e.target.value})}
-              />
-              <Input
-                placeholder="Numéro de téléphone"
-                value={calculatorData.phone}
-                onChange={(e) => setCalculatorData({...calculatorData, phone: e.target.value})}
-              />
+              <div>
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  Nom complet
+                </label>
+                <Input
+                  placeholder="Votre nom complet"
+                  value={calculatorData.name}
+                  onChange={(e) => setCalculatorData({...calculatorData, name: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  Téléphone
+                </label>
+                <Input
+                  placeholder="Numéro de téléphone"
+                  value={calculatorData.phone}
+                  onChange={(e) => setCalculatorData({...calculatorData, phone: e.target.value})}
+                />
+              </div>
             </div>
             
             <Button type="submit" variant="hero" className="w-full mt-4" size="lg">
+              <Calculator className="w-4 h-4 mr-2" />
               Recevoir ma simulation détaillée
             </Button>
           </div>
