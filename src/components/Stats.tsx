@@ -108,9 +108,13 @@ const Stats = () => {
     <section className="py-20 bg-gradient-to-br from-background to-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">
-            Nos résultats en chiffres
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <TrendingUp className="w-8 h-8 text-prosperity" />
+            <h2 className="text-4xl font-bold text-primary">
+              Nos résultats en chiffres
+            </h2>
+            <TrendingUp className="w-8 h-8 text-prosperity" />
+          </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Depuis 5 ans, nous transformons l'agriculture ivoirienne avec des résultats concrets et mesurables
           </p>

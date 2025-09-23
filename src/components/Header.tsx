@@ -38,6 +38,9 @@ const Header = () => {
             <a href="#zones-intervention" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('zones-intervention')?.scrollIntoView({behavior: 'smooth'})}>
               Régions
             </a>
+            <a href="/partenaires" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors">
+              Partenaires
+            </a>
             <a href="#contact" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
               Contact
             </a>
@@ -101,6 +104,13 @@ const Header = () => {
                 onClick={() => {setIsMenuOpen(false); document.getElementById('zones-intervention')?.scrollIntoView({behavior: 'smooth'});}}
               >
                 Nos régions
+              </a>
+              <a 
+                href="/partenaires" 
+                className="text-foreground hover:text-primary font-medium transition-colors py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Partenaires
               </a>
               <a 
                 href="#contact" 

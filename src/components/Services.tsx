@@ -85,9 +85,13 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">
-            Nos Services
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Banknote className="w-8 h-8 text-prosperity" />
+            <h2 className="text-4xl font-bold text-primary">
+              Nos Services
+            </h2>
+            <Banknote className="w-8 h-8 text-prosperity" />
+          </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Un accompagnement complet de la plantation à la commercialisation
           </p>

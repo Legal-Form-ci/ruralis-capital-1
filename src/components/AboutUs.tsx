@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, Award, Target, Heart } from "lucide-react";
+import { Users, Award, Target, Heart, Building2 } from "lucide-react";
 import founderPhoto from "@/assets/founder-photo.jpg";
+import ruralisLogo from "@/assets/ruralis-logo-new.png";
 
 const AboutUs = () => {
   const values = [
@@ -31,9 +32,20 @@ const AboutUs = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">
-            Qui sommes-nous ?
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Building2 className="w-8 h-8 text-prosperity" />
+            <h2 className="text-4xl md:text-5xl font-bold text-primary">
+              Qui sommes-nous
+            </h2>
+            <Building2 className="w-8 h-8 text-prosperity" />
+          </div>
+          <div className="flex justify-center">
+            <img 
+              src={ruralisLogo} 
+              alt="Ruralis Capital Logo"
+              className="h-20 md:h-24 hover:scale-110 transition-transform duration-300 cursor-pointer"
+            />
+          </div>
         </div>
 
         {/* Notre histoire */}

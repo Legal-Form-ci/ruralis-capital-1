@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote, MapPin, TrendingUp } from "lucide-react";
-import palmPlantationImage from "@/assets/palm-plantation-ivory-coast.jpg";
+import { Button } from "@/components/ui/button";
+import { Quote, MapPin, TrendingUp, MessageSquare } from "lucide-react";
+import FormModal from "./FormModal";
+import palmPlantationImage from "@/assets/palm-production.jpg";
 import farmer1 from "@/assets/farmer-1.jpg";
 import farmer2 from "@/assets/farmer-2.jpg";
 import farmer3 from "@/assets/farmer-3.jpg";
@@ -40,9 +42,13 @@ const Testimonials = () => {
     <section id="temoignages" className="py-20 bg-gradient-to-br from-secondary/30 to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">
-            Ils ont transformé leur vie avec Ruralis Capital
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Quote className="w-8 h-8 text-prosperity" />
+            <h2 className="text-4xl font-bold text-primary">
+              Ils ont transformé leur vie avec Ruralis Capital
+            </h2>
+            <Quote className="w-8 h-8 text-prosperity rotate-180" />
+          </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Découvrez les témoignages authentiques de nos agriculteurs partenaires
           </p>
@@ -112,7 +118,25 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Success Story Highlight */}
+        {/* Action Buttons */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <Button 
+              onClick={() => window.location.href = '/testimonials'}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <Quote className="w-4 h-4" />
+              Voir plus de témoignages
+            </Button>
+            <FormModal type="testimonial">
+              <Button variant="prosperity" className="flex items-center gap-2">
+                <MessageSquare className="w-4 h-4" />
+                Laisser un témoignage
+              </Button>
+            </FormModal>
+          </div>
+        </div>
         <div className="bg-gradient-to-r from-success/10 to-prosperity/10 rounded-2xl p-8">
           <div className="text-center">
             <h3 className="text-2xl font-bold text-primary mb-4">
