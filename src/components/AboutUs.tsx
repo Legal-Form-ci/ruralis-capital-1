@@ -50,7 +50,10 @@ const AboutUs = () => {
 
         {/* Notre histoire */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary mb-8">Notre histoire</h3>
+          <div className="flex items-center gap-3 mb-8">
+            <Heart className="w-6 h-6 text-prosperity" />
+            <h3 className="text-3xl font-bold text-primary">Notre histoire</h3>
+          </div>
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
             <p>
               Ruralis Capital est née en Côte d'Ivoire d'un constat simple mais alarmant : malgré leur rôle central dans l'économie, les agriculteurs ivoiriens – et plus largement africains, véritables nourriciers des nations – peinent à vivre dignement de leur travail. Le manque de financements et d'accompagnement adaptés, l'absence de garanties et de débouchés commerciaux fiables, des sols épuisés, la vulnérabilité climatique et la précarité économique freinent leur potentiel et menacent l'avenir de nombreux pays du continent.
@@ -70,14 +73,20 @@ const AboutUs = () => {
         {/* Notre mission */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div>
-            <h3 className="text-3xl font-bold text-primary mb-6">Notre mission</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <Target className="w-6 h-6 text-prosperity" />
+              <h3 className="text-3xl font-bold text-primary">Notre mission</h3>
+            </div>
             <p className="text-muted-foreground text-lg leading-relaxed">
               Démocratiser l'accès aux plantations agricoles rentables pour que chaque agriculteur, qu'il soit petit producteur ou exploitant à plus grande échelle, puisse investir, produire et prospérer, en bénéficiant d'un accompagnement structuré et d'un financement adapté à ses besoins.
             </p>
           </div>
 
           <div>
-            <h3 className="text-3xl font-bold text-primary mb-6">Notre vision</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <Award className="w-6 h-6 text-success" />
+              <h3 className="text-3xl font-bold text-primary">Notre vision</h3>
+            </div>
             <p className="text-muted-foreground mb-4">
               Nous croyons que l'agriculture est la clé du développement durable. Notre ambition est de :
             </p>
@@ -94,7 +103,10 @@ const AboutUs = () => {
         {/* Notre entreprise - infos de base */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div className="space-y-6">
-            <h3 className="text-3xl font-bold text-primary">Notre entreprise</h3>
+            <div className="flex items-center gap-3">
+              <Building2 className="w-6 h-6 text-prosperity" />
+              <h3 className="text-3xl font-bold text-primary">Notre entreprise</h3>
+            </div>
             <div className="space-y-4">
               <div className="bg-card p-6 rounded-xl shadow-sm">
                 <h4 className="font-semibold text-lg text-primary mb-2">Ruralis Capital SARL</h4>
@@ -108,7 +120,10 @@ const AboutUs = () => {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-3xl font-bold text-primary">Notre expertise</h3>
+            <div className="flex items-center gap-3">
+              <Award className="w-6 h-6 text-success" />
+              <h3 className="text-3xl font-bold text-primary">Notre expertise</h3>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Card className="text-center p-6">
                 <CardContent className="p-0">
@@ -140,7 +155,11 @@ const AboutUs = () => {
 
         {/* Nos valeurs */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary mb-8">Nos valeurs</h3>
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Heart className="w-6 h-6 text-prosperity" />
+            <h3 className="text-3xl font-bold text-primary text-center">Nos valeurs</h3>
+            <Heart className="w-6 h-6 text-prosperity" />
+          </div>
             <p className="text-muted-foreground mb-8">
               Nous plaçons la transparence, l'innovation, la durabilité et la solidarité au cœur de notre action. Concrètement :
             </p>
@@ -161,7 +180,11 @@ const AboutUs = () => {
 
         {/* Notre équipe */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary mb-8">Notre équipe</h3>
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Users className="w-6 h-6 text-prosperity" />
+            <h3 className="text-3xl font-bold text-primary text-center">Notre équipe</h3>
+            <Users className="w-6 h-6 text-prosperity" />
+          </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
             <div>

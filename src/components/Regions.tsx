@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Users, Trees, TrendingUp, Award } from "lucide-react";
+import { MapPin, Users, Trees, TrendingUp, Award, Building2 } from "lucide-react";
 
 const Regions = () => {
   const regions = [
@@ -61,9 +61,13 @@ const Regions = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary mb-4">
-            Nos 8 régions d'excellence
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <MapPin className="w-8 h-8 text-prosperity" />
+            <h2 className="text-4xl font-bold text-primary">
+              Nos 8 régions d'excellence
+            </h2>
+            <MapPin className="w-8 h-8 text-prosperity" />
+          </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Une présence forte dans les meilleures zones agricoles de Côte d'Ivoire
           </p>
@@ -128,9 +132,13 @@ const Regions = () => {
 
         {/* Regional Performance */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-12">
-            Performances par région
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <TrendingUp className="w-6 h-6 text-prosperity" />
+            <h3 className="text-2xl font-bold text-primary text-center">
+              Performances par région
+            </h3>
+            <TrendingUp className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="bg-gradient-to-r from-prosperity/10 to-success/10">
               <CardContent className="p-8">
@@ -175,9 +183,13 @@ const Regions = () => {
 
         {/* Success Stories by Region */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-12">
-            Histoires de réussite par région
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <Award className="w-6 h-6 text-prosperity" />
+            <h3 className="text-2xl font-bold text-primary text-center">
+              Histoires de réussite par région
+            </h3>
+            <Award className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
@@ -223,9 +235,13 @@ const Regions = () => {
 
         {/* Regional Infrastructure */}
         <div className="bg-gradient-to-r from-secondary/20 to-background rounded-2xl p-8 mb-16">
-          <h3 className="text-2xl font-bold text-primary text-center mb-8">
-            Notre infrastructure régionale
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Building2 className="w-6 h-6 text-prosperity" />
+            <h3 className="text-2xl font-bold text-primary text-center">
+              Notre infrastructure régionale
+            </h3>
+            <Building2 className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center">
               <div className="bg-prosperity/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -260,9 +276,13 @@ const Regions = () => {
 
         {/* Contact Regional Teams */}
         <div className="bg-gradient-to-r from-success/10 to-prosperity/10 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-primary text-center mb-6">
-            Contactez nos équipes régionales
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Users className="w-6 h-6 text-prosperity" />
+            <h3 className="text-2xl font-bold text-primary text-center">
+              Contactez nos équipes régionales
+            </h3>
+            <Users className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card>
               <CardContent className="p-6 text-center">

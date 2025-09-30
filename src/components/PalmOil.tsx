@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { TrendingUp, Calendar, Globe, MapPin, Target, Award } from "lucide-react";
+import { TrendingUp, Calendar, Globe, MapPin, Target, Award, Sprout } from "lucide-react";
 import palmNurseryImage from "@/assets/palm-nursery-new.jpg";
 
 const PalmOil = () => {
@@ -73,7 +73,10 @@ const PalmOil = () => {
         {/* Why Palm Oil */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div>
-            <h3 className="text-3xl font-bold text-primary mb-8">Pourquoi le palmier à huile ?</h3>
+            <div className="flex items-center gap-3 mb-8">
+              <Sprout className="w-6 h-6 text-prosperity" />
+              <h3 className="text-3xl font-bold text-primary">Pourquoi le palmier à huile ?</h3>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {advantages.map((advantage, index) => (
                 <Card key={index} className="hover:shadow-lg transition-all duration-300">
@@ -101,9 +104,13 @@ const PalmOil = () => {
 
         {/* Our Results */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary text-center mb-12">
-            Nos résultats concrets
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <TrendingUp className="w-6 h-6 text-prosperity" />
+            <h3 className="text-3xl font-bold text-primary text-center">
+              Nos résultats concrets
+            </h3>
+            <TrendingUp className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {results.map((result, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
@@ -147,9 +154,13 @@ const PalmOil = () => {
 
         {/* Advanced Techniques */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary text-center mb-12">
-            Nos techniques avancées
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <Target className="w-6 h-6 text-prosperity" />
+            <h3 className="text-3xl font-bold text-primary text-center">
+              Nos techniques avancées
+            </h3>
+            <Target className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-gradient-to-r from-prosperity/5 to-success/5 rounded-2xl p-8">
               <h4 className="text-2xl font-bold text-primary mb-6">Semences de haute qualité</h4>
@@ -198,9 +209,13 @@ const PalmOil = () => {
 
         {/* Economic Model */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary text-center mb-12">
-            Modèle économique transparent
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <TrendingUp className="w-6 h-6 text-prosperity" />
+            <h3 className="text-3xl font-bold text-primary text-center">
+              Modèle économique transparent
+            </h3>
+            <TrendingUp className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="bg-gradient-to-br from-prosperity/10 to-success/10">
               <CardContent className="p-8 text-center">
@@ -246,9 +261,13 @@ const PalmOil = () => {
 
         {/* Market Analysis */}
         <div className="mb-16">
-          <h3 className="text-3xl font-bold text-primary text-center mb-12">
-            Analyse du marché de l'huile de palme
-          </h3>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <Globe className="w-6 h-6 text-prosperity" />
+            <h3 className="text-3xl font-bold text-primary text-center">
+              Analyse du marché de l'huile de palme
+            </h3>
+            <Globe className="w-6 h-6 text-prosperity" />
+          </div>
           <div className="bg-gradient-to-r from-secondary/20 to-background rounded-2xl p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>

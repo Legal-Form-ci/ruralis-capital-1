@@ -64,9 +64,13 @@ const TestimonialForm = () => {
         <div className="bg-prosperity/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
           <MessageSquare className="w-8 h-8 text-prosperity" />
         </div>
-        <CardTitle className="text-2xl text-primary">
-          Partagez votre expérience avec Ruralis Capital
-        </CardTitle>
+        <div className="flex items-center justify-center gap-2">
+          <MessageSquare className="w-5 h-5 text-prosperity" />
+          <CardTitle className="text-2xl text-primary text-center">
+            Partagez votre expérience avec Ruralis Capital
+          </CardTitle>
+          <MessageSquare className="w-5 h-5 text-prosperity" />
+        </div>
         <p className="text-muted-foreground">
           Votre témoignage inspire d'autres agriculteurs à rejoindre notre communauté
         </p>

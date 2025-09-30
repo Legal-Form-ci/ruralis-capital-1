@@ -10,8 +10,12 @@ import {
   TrendingUp,
   Shield,
   Sprout,
-  Factory
+  Factory,
+  FileText
 } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const Partners = () => {
   const partnerCategories = [
@@ -59,6 +63,13 @@ const Partners = () => {
           services: ["Transition écologique", "Durabilité environnementale", "Certification"],
           projects: ["Certification agriculture durable", "Protection des écosystèmes"],
           status: "Partenaire régulateur"
+        },
+        {
+          name: "AFOR",
+          fullName: "Agence Foncière Rurale",
+          services: ["Sécurisation foncière rurale", "Délivrance certificats fonciers", "Titres fonciers"],
+          projects: ["Régularisation 2000+ hectares", "Formation gestion foncière", "Prévention conflits fonciers"],
+          status: "Partenaire stratégique"
         }
       ]
     },
@@ -200,7 +211,9 @@ const Partners = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary/30 to-background">
+    <div className="min-h-screen">
+      <Header />
+      <main className="bg-gradient-to-br from-secondary/30 to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -321,6 +334,9 @@ const Partners = () => {
           </div>
         </div>
       </div>
+      </main>
+      <Footer />
+      <WhatsAppFloat />
     </div>
   );
 };

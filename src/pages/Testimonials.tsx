@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, MapPin, TrendingUp, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import farmer1 from "@/assets/farmer-1.jpg";
 import farmer2 from "@/assets/farmer-2.jpg";
 import farmer3 from "@/assets/farmer-3.jpg";
@@ -65,7 +68,9 @@ const TestimonialsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary/30 to-background">
+    <div className="min-h-screen">
+      <Header />
+      <main className="bg-gradient-to-br from-secondary/30 to-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="flex items-center gap-4 mb-8">
           <Link to="/">
@@ -140,6 +145,9 @@ const TestimonialsPage = () => {
           ))}
         </div>
       </div>
+      </main>
+      <Footer />
+      <WhatsAppFloat />
     </div>
   );
 };
