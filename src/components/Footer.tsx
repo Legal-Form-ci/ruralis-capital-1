@@ -12,16 +12,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold">
-              Ruralis Capital <span className="text-prosperity">SARL</span>
-            </h3>
+            <div>
+              <h3 className="text-2xl font-bold">
+                <span className="text-success">RURALIS</span> <span className="text-prosperity">CAPITAL</span>
+              </h3>
+              <p className="text-sm text-prosperity italic leading-none mt-1">
+                "Finançons vos plantations, récoltons vos succès"
+              </p>
+            </div>
             <p className="text-primary-foreground/80">
               Leader du financement agricole en Côte d'Ivoire depuis 5 ans. 
               Nous finançons vos plantations et garantissons la commercialisation de vos récoltes.
             </p>
-            <div className="text-lg font-semibold text-prosperity">
-              "Finançons vos plantations, récoltons vos succès"
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -98,7 +100,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-primary-foreground/60 text-sm">
-              © 2024 Ruralis Capital SARL. Tous droits réservés.
+              © 2024 Ruralis Capital. Tous droits réservés.
             </div>
             
             <div className="flex items-center space-x-6">

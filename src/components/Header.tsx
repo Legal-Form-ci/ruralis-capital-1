@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import ruralisLogo from "@/assets/ruralis-logo-new.png";
 
 const Header = () => {
@@ -38,9 +39,9 @@ const Header = () => {
             <a href="#zones-intervention" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('zones-intervention')?.scrollIntoView({behavior: 'smooth'})}>
               Régions
             </a>
-            <a href="/partenaires" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors">
+            <Link to="/partenaires" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors">
               Partenaires
-            </a>
+            </Link>
             <a href="#contact" className="text-xs lg:text-sm text-foreground hover:text-primary font-medium transition-colors" onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}>
               Contact
             </a>
@@ -105,13 +106,13 @@ const Header = () => {
               >
                 Nos régions
               </a>
-              <a 
-                href="/partenaires" 
+              <Link 
+                to="/partenaires" 
                 className="text-foreground hover:text-primary font-medium transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Partenaires
-              </a>
+              </Link>
               <a 
                 href="#contact" 
                 className="text-foreground hover:text-primary font-medium transition-colors py-2"

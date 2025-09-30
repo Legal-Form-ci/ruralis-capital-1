@@ -28,21 +28,24 @@ const Partners = () => {
           fullName: "Centre National de Recherche Agronomique",
           services: ["Recherche et innovation agricole", "Développement de nouvelles variétés", "Formation technique"],
           projects: ["Programme de sélection variétale", "Recherche sur les rendements", "Innovation technologique"],
-          status: "Partenaire actif"
+          status: "Partenaire actif",
+          logo: "/logos/cnra-logo.png"
         },
         {
           name: "ANADER",
           fullName: "Agence Nationale d'Appui au Développement Rural",
           services: ["Encadrement des producteurs", "Formation technique", "Vulgarisation agricole"],
           projects: ["Formation de 1200+ agriculteurs", "Suivi technique terrain", "Accompagnement post-plantation"],
-          status: "Partenaire stratégique"
+          status: "Partenaire stratégique",
+          logo: "/logos/anader-logo.png"
         },
         {
           name: "FIRCA",
           fullName: "Fonds Interprofessionnel pour la Recherche et le Conseil Agricoles",
           services: ["Cofinancement recherche", "Appui au conseil agricole", "Innovation"],
           projects: ["Financement programmes R&D", "Projets pilotes", "Transfert de technologies"],
-          status: "Partenaire financeur"
+          status: "Partenaire financeur",
+          logo: "/logos/firca-logo.svg"
         }
       ]
     },
@@ -69,7 +72,8 @@ const Partners = () => {
           fullName: "Agence Foncière Rurale",
           services: ["Sécurisation foncière rurale", "Délivrance certificats fonciers", "Titres fonciers"],
           projects: ["Régularisation 2000+ hectares", "Formation gestion foncière", "Prévention conflits fonciers"],
-          status: "Partenaire stratégique"
+          status: "Partenaire stratégique",
+          logo: "/logos/afor-logo.png"
         }
       ]
     },
@@ -96,7 +100,8 @@ const Partners = () => {
           fullName: "Banque Ouest Africaine de Développement",
           services: ["Financements de grande envergure", "Projets régionaux", "Développement"],
           projects: ["Programme expansion régionale", "Financement 5Mds FCFA"],
-          status: "Bailleur stratégique"
+          status: "Bailleur stratégique",
+          logo: "/logos/boad-logo.png"
         },
         {
           name: "Baobab+",
@@ -116,7 +121,8 @@ const Partners = () => {
           fullName: "Palme de Côte d'Ivoire",
           services: ["Transformation huile de palme", "Achat production", "Expertise industrielle"],
           projects: ["Contrat rachat 15,000 tonnes/an", "Transfert expertise technique"],
-          status: "Acheteur principal"
+          status: "Acheteur principal",
+          logo: "/logos/palmci-logo.png"
         },
         {
           name: "Olam International",
@@ -163,21 +169,24 @@ const Partners = () => {
           fullName: "Organisation des Nations Unies pour l'Alimentation",
           services: ["Appui technique", "Projets pilotes", "Expertise internationale"],
           projects: ["Programme agriculture durable", "Transfert technologies"],
-          status: "Partenaire technique ONU"
+          status: "Partenaire technique ONU",
+          logo: "/logos/fao-logo.png"
         },
         {
           name: "FIDA",
           fullName: "Fonds International de Développement Agricole",
           services: ["Financement développement agricole", "Réduction pauvreté rurale"],
           projects: ["Programme PRPAOC", "Financement 3Mds FCFA"],
-          status: "Bailleur international"
+          status: "Bailleur international",
+          logo: "/logos/fida-logo.png"
         },
         {
           name: "BAD",
           fullName: "Banque Africaine de Développement",
           services: ["Financements continentaux", "Projets structurants", "Expertise"],
           projects: ["Initiative transformation agricole", "Financement infrastructure"],
-          status: "Institution continentale"
+          status: "Institution continentale",
+          logo: "/logos/bad-logo.png"
         }
       ]
     },
@@ -275,8 +284,8 @@ const Partners = () => {
                 {category.partners.map((partner, partnerIndex) => (
                   <Card key={partnerIndex} className="hover:shadow-lg transition-all duration-300">
                     <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div>
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
                           <CardTitle className="text-xl text-primary">{partner.name}</CardTitle>
                           <p className="text-sm text-muted-foreground mt-1">{partner.fullName}</p>
                         </div>
@@ -287,6 +296,15 @@ const Partners = () => {
                           {partner.status}
                         </Badge>
                       </div>
+                      {partner.logo && (
+                        <div className="flex justify-center items-center h-20 bg-gray-50 rounded-lg p-4">
+                          <img 
+                            src={partner.logo} 
+                            alt={`${partner.name} logo`}
+                            className="max-h-16 max-w-full object-contain"
+                          />
+                        </div>
+                      )}
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
