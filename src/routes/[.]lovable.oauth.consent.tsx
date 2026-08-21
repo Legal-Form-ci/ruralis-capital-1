@@ -2,16 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Logo } from "@/components/Logo";
-
-type OAuthNamespace = {
-  getAuthorizationDetails: (id: string) => Promise<{ data: any; error: { message: string } | null }>;
-  approveAuthorization: (id: string) => Promise<{ data: any; error: { message: string } | null }>;
-  denyAuthorization: (id: string) => Promise<{ data: any; error: { message: string } | null }>;
-};
-
-function oauth(): OAuthNamespace {
-  return (supabase.auth as unknown as { oauth: OAuthNamespace }).oauth;
-}
+import { getSupabaseOAuth } from "@/lib/supabase-oauth";
 
 export const Route = createFileRoute("/.lovable/oauth/consent")({
   // Browser-only: the Supabase session lives in localStorage.
@@ -28,8 +19,9 @@ export const Route = createFileRoute("/.lovable/oauth/consent")({
     }
   },
   loader: async ({ location }) => {
-    const authorizationId = new URLSearchParams(location.search).get("authorization_id")!;
-    const { data, error } = await oauth().getAuthorizationDetails(authorizationId);
+    const authorizationId = new URLSearchParams(location.search).get("authorization_id");
+    if (!authorizationId) throw new Error("authorization_id manquant");
+    const { data, error } = await getSupabaseOAuth().getAuthorizationDetails(authorizationId);
     if (error) throw new Error(error.message);
     const immediate = data?.redirect_url ?? data?.redirect_to;
     if (immediate && !data?.client) throw redirect({ href: immediate });
@@ -56,8 +48,8 @@ function Consent() {
     setBusy(true);
     setError(null);
     const { data, error: err } = approve
-      ? await oauth().approveAuthorization(authorization_id)
-      : await oauth().denyAuthorization(authorization_id);
+      ? await getSupabaseOAuth().approveAuthorization(authorization_id)
+      : await getSupabaseOAuth().denyAuthorization(authorization_id);
     if (err) {
       setBusy(false);
       setError(err.message);
