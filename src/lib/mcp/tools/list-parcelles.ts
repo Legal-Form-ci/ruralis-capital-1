@@ -20,7 +20,11 @@ export default defineTool({
       .select("id, code, owner_name, owner_phone, domaine_id, convention_date, convention_status, declared_area, created_at")
       .order("created_at", { ascending: false })
       .limit(limit ?? 50);
-    if (search) query = query.or(`code.ilike.%${search}%,owner_name.ilike.%${search}%`);
+    if (search) {
+      // Échappe les caractères spéciaux PostgREST/LIKE pour éviter toute injection de filtre.
+      const safe = search.replace(/[,()."'*%\\_]/g, " ").trim();
+      if (safe) query = query.or(`code.ilike.%${safe}%,owner_name.ilike.%${safe}%`);
+    }
     const { data, error } = await query;
     if (error) return { content: [{ type: "text", text: error.message }], isError: true };
     return {
