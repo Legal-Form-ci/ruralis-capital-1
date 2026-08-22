@@ -1,161 +1,50 @@
-# SQL manuel — AcreMap (à exécuter dans Supabase SQL Editor)
+# Migration complète vers une base AcreMap unique
 
-Ce script est idempotent : il peut être relancé sans risque.
-Il ajoute la colonne `name` sur `parcelles`, complète les tables manquantes,
-les index, les grants, les RLS et les politiques de stockage.
+## Objectif
 
-## 1. Colonne `name` sur les parcelles
+Faire de Supabase AcreMap l’unique source de vérité en ligne, conserver un cache local fiable pour le terrain hors connexion, puis synchroniser automatiquement toutes les files d’attente dès le retour du réseau.
 
-```sql
-alter table public.parcelles add column if not exists name text;
-comment on column public.parcelles.name is 'Nom libre de la parcelle (saisi à l''étape Parcelle)';
-```
+## Travaux prévus
 
-## 2. Colonnes complémentaires sur les imports
+1. **Connexion unique à Supabase**
+   - Centraliser l’URL et la clé publique du projet `ckkjqpsoavrikgiuuktf` dans une configuration partagée par le navigateur, les fonctions serveur et le serveur MCP.
+   - Supprimer l’ancienne référence Supabase encore codée dans le serveur MCP.
+   - Ajouter des replis sûrs vers les variables publiques afin que le preview et le domaine `acremap.agricapital.ci` ciblent toujours AcreMap, sans exposer la clé service-role.
 
-```sql
-alter table public.imports add column if not exists parsed jsonb;
-alter table public.imports add column if not exists storage_path text;
-alter table public.imports add column if not exists error text;
-```
+2. **Synchronisation complète et mode hors ligne**
+   - Au démarrage en ligne : vider les opérations en attente, récupérer les données cloud, puis remplacer le cache local obsolète.
+   - À chaque reconnexion et périodiquement : vider toutes les files, puis rafraîchir le cache local.
+   - Mettre en file chaque création, modification et suppression locale des SP, domaines, parcelles, mesures et lots.
+   - Ajouter une vraie file locale pour les fichiers importés hors ligne, y compris leur contenu, et les téléverser automatiquement au retour du réseau.
+   - Éviter les doublons par identifiants stables et règles d’unicité adaptées.
 
-## 3. Index utiles
+3. **Traitement & morcellement unifié**
+   - Intégrer directement le formulaire d’import dans cette page.
+   - Retirer l’entrée de menu « Importer des fichiers » et rediriger l’ancienne URL vers « Traitement & morcellement ».
+   - Permettre à l’administrateur de supprimer un fichier archivé à la fois dans Storage et dans la table `imports`.
+   - Synchroniser les relevés créés, rattachés, recalculés, archivés ou supprimés.
 
-```sql
-create unique index if not exists sps_code_key        on public.sps (code);
-create unique index if not exists domaines_code_key   on public.domaines (code);
-create unique index if not exists parcelles_code_key  on public.parcelles (code);
-create index if not exists domaines_sp_idx           on public.domaines (sp_id);
-create index if not exists parcelles_domaine_idx     on public.parcelles (domaine_id);
-create index if not exists measurements_parcelle_idx on public.measurements (parcelle_id);
-create index if not exists lots_parcelle_idx         on public.lots (parcelle_id);
-create index if not exists imports_parcelle_idx      on public.imports (parcelle_id);
-create index if not exists imports_created_idx       on public.imports (created_at desc);
-```
+4. **Administration et navigation mobile**
+   - Remplacer la barre mobile limitée à quatre liens par un menu mobile complet donnant accès aux pages administrateur autorisées.
+   - Conserver les contrôles de rôle côté serveur/base pour toutes les actions sensibles.
+   - Corriger le rafraîchissement du jeton afin que les fonctions administrateur reçoivent toujours une session valide.
 
-## 4. Table des photos liées (propriétaire, famille, parcelle)
+5. **Hiérarchie entièrement administrable**
+   - Réactiver pour l’administrateur la création, la modification et la suppression des sous-préfectures, domaines et parcelles, avec confirmations et gestion des dépendances.
+   - Synchroniser chaque action immédiatement ou la mettre en attente hors ligne.
+   - Corriger le référentiel : Zoukougbeu devient un département du Haut-Sassandra et n’est plus une sous-préfecture de Daloa.
 
-```sql
-create table if not exists public.parcelle_photos (
-  id uuid primary key default gen_random_uuid(),
-  parcelle_id uuid not null references public.parcelles(id) on delete cascade,
-  kind text not null default 'parcelle',   -- 'owner' | 'group' | 'parcelle'
-  storage_path text not null,
-  caption text,
-  created_by uuid references auth.users(id),
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
-);
+6. **Base de données et sécurité**
+   - Ajouter seulement les colonnes/index nécessaires à l’archivage et à l’anti-doublon, avec droits explicites et politiques RLS.
+   - Vérifier les droits administrateur sur toutes les tables et sur les objets des buckets `imports` et `photos`.
+   - Exécuter le linter Supabase après migration sans modifier les alertes hors périmètre.
 
-grant select, insert, update, delete on public.parcelle_photos to authenticated;
-grant all on public.parcelle_photos to service_role;
+7. **Validation**
+   - Vérifier les flux connecté/hors ligne/reconnexion, les suppressions admin, le menu mobile et la cohérence des compteurs/listes.
+   - Comparer les données visibles après connexion depuis le preview et depuis le domaine public.
 
-alter table public.parcelle_photos enable row level security;
+## Détail technique
 
-drop policy if exists parcelle_photos_select on public.parcelle_photos;
-create policy parcelle_photos_select on public.parcelle_photos for select to authenticated
-  using (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent') or has_role(auth.uid(),'viewer'));
-
-drop policy if exists parcelle_photos_write on public.parcelle_photos;
-create policy parcelle_photos_write on public.parcelle_photos for insert to authenticated
-  with check (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent'));
-
-drop policy if exists parcelle_photos_update on public.parcelle_photos;
-create policy parcelle_photos_update on public.parcelle_photos for update to authenticated
-  using (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent'))
-  with check (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent'));
-
-drop policy if exists parcelle_photos_delete on public.parcelle_photos;
-create policy parcelle_photos_delete on public.parcelle_photos for delete to authenticated
-  using (has_role(auth.uid(),'admin'));
-
-drop trigger if exists set_updated_at_parcelle_photos on public.parcelle_photos;
-create trigger set_updated_at_parcelle_photos before update on public.parcelle_photos
-  for each row execute function public.set_updated_at();
-```
-
-## 5. Affectation d'une parcelle à un utilisateur (suivi terrain)
-
-```sql
-create table if not exists public.parcelle_assignments (
-  id uuid primary key default gen_random_uuid(),
-  parcelle_id uuid not null references public.parcelles(id) on delete cascade,
-  user_id uuid not null references auth.users(id) on delete cascade,
-  role_label text not null default 'agent',
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now(),
-  unique (parcelle_id, user_id)
-);
-
-grant select, insert, update, delete on public.parcelle_assignments to authenticated;
-grant all on public.parcelle_assignments to service_role;
-
-alter table public.parcelle_assignments enable row level security;
-
-drop policy if exists pa_select on public.parcelle_assignments;
-create policy pa_select on public.parcelle_assignments for select to authenticated
-  using (user_id = auth.uid() or has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent'));
-
-drop policy if exists pa_write on public.parcelle_assignments;
-create policy pa_write on public.parcelle_assignments for all to authenticated
-  using (has_role(auth.uid(),'admin'))
-  with check (has_role(auth.uid(),'admin'));
-
-drop trigger if exists set_updated_at_parcelle_assignments on public.parcelle_assignments;
-create trigger set_updated_at_parcelle_assignments before update on public.parcelle_assignments
-  for each row execute function public.set_updated_at();
-```
-
-## 6. Politiques de stockage (buckets `imports` et `photos`)
-
-Les buckets existent déjà et sont privés. Les politiques ci-dessous autorisent
-les utilisateurs authentifiés disposant d'un rôle à lire/écrire.
-
-```sql
-drop policy if exists storage_imports_read on storage.objects;
-create policy storage_imports_read on storage.objects for select to authenticated
-  using (bucket_id = 'imports'
-     and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent') or has_role(auth.uid(),'viewer')));
-
-drop policy if exists storage_imports_write on storage.objects;
-create policy storage_imports_write on storage.objects for insert to authenticated
-  with check (bucket_id = 'imports' and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent')));
-
-drop policy if exists storage_imports_update on storage.objects;
-create policy storage_imports_update on storage.objects for update to authenticated
-  using (bucket_id = 'imports' and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent')))
-  with check (bucket_id = 'imports' and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent')));
-
-drop policy if exists storage_imports_delete on storage.objects;
-create policy storage_imports_delete on storage.objects for delete to authenticated
-  using (bucket_id = 'imports' and has_role(auth.uid(),'admin'));
-
-drop policy if exists storage_photos_read on storage.objects;
-create policy storage_photos_read on storage.objects for select to authenticated
-  using (bucket_id = 'photos'
-     and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent') or has_role(auth.uid(),'viewer')));
-
-drop policy if exists storage_photos_write on storage.objects;
-create policy storage_photos_write on storage.objects for insert to authenticated
-  with check (bucket_id = 'photos' and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent')));
-
-drop policy if exists storage_photos_update on storage.objects;
-create policy storage_photos_update on storage.objects for update to authenticated
-  using (bucket_id = 'photos' and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent')))
-  with check (bucket_id = 'photos' and (has_role(auth.uid(),'admin') or has_role(auth.uid(),'agent')));
-
-drop policy if exists storage_photos_delete on storage.objects;
-create policy storage_photos_delete on storage.objects for delete to authenticated
-  using (bucket_id = 'photos' and has_role(auth.uid(),'admin'));
-```
-
-## 7. Rappel manuel (hors SQL)
-
-Dans le dashboard Supabase : **Authentication → Providers → Email** →
-activer « Prevent use of leaked passwords » (protection contre les mots de passe compromis).
-
-## Après exécution
-
-Aucune action supplémentaire dans l'application : le code lit et écrit déjà
-`parcelles.name`, `imports.storage_path` et le bucket `imports` (bouton
-« Traiter » de la page Traitement & morcellement).
+- Supabase reste la source de vérité quand le réseau est disponible ; IndexedDB devient un cache hors ligne et une file transactionnelle, pas une base concurrente.
+- Les suppressions sont propagées au cloud avant la prochaine récupération afin d’éviter la réapparition des éléments.
+- Les données métier restent protégées par les rôles `admin`, `agent` et `viewer` existants ; aucune clé privilégiée n’est envoyée au navigateur.
