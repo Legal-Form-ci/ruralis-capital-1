@@ -115,15 +115,8 @@ export const resetUserPasswordAdmin = createServerFn({ method: "POST" })
     return { tempPassword };
   });
 
-// Bootstrap : permet de promouvoir le PREMIER utilisateur en admin si aucun admin n'existe.
-// Aucun privilège requis, mais ne fait rien si un admin existe déjà.
-export const bootstrapFirstAdmin = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
-  .handler(async ({ context }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: existing } = await supabaseAdmin.from("user_roles").select("user_id").eq("role", "admin").limit(1);
-    if (existing && existing.length > 0) return { promoted: false, reason: "Un admin existe déjà" };
-    await supabaseAdmin.from("user_roles").delete().eq("user_id", context.userId);
-    await supabaseAdmin.from("user_roles").insert({ user_id: context.userId, role: "admin" });
-    return { promoted: true };
-  });
+// SÉCURITÉ : l'ancien endpoint « bootstrapFirstAdmin » a été supprimé.
+// Il permettait à n'importe quel compte connecté de s'attribuer le rôle admin
+// dès qu'aucun admin n'existait. La promotion du premier administrateur doit
+// se faire manuellement en base (SQL Editor) ou via setUserRoleAdmin par un admin.
+
